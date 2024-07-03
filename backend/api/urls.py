@@ -8,7 +8,6 @@ from rest_framework_simplejwt.views import (
 from .views.account_view import AccountView
 from .views.auth_view import AuthViewSet
 from .views.download_from_blob_view import DownloadFromBlobViewSet
-from .views.in_development_view import InDevelopmentView
 from .views.leaderboard_entry_view import LeaderboardEntryView
 from .views.leaderboard_view import LeaderboardView
 from .views.problem_occurence_view import ProblemOccurrenceView
@@ -27,7 +26,7 @@ api_router.register(
 # Urlpatterns are default for normal views
 urlpatterns = [
     path("problems/occurrence_overview", Problems.as_view()),
-    path("account", AccountView.as_view()),
+    path("account", AccountView.as_view(), name="account"),
     path("submissions", SubmissionView.as_view()),
     path(
         "problems/problem_occurrence/<str:problem_id>",
@@ -45,11 +44,6 @@ urlpatterns = [
         LeaderboardEntryView.as_view(),
         name="leaderboardEntry",
     ),
-    path(
-        "in_development",
-        InDevelopmentView.as_view(),
-        name="in_development"
-    )
 ]
 
 # Combining urls of routers and patterns
